@@ -48,3 +48,6 @@ build-iPhoneSimulator/
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
+
+# Versions will be either specified in Gemfile or latest version should be taken
+Gemfile.lock
