@@ -13,7 +13,6 @@ class ProjectEndpoint
   def change_active_project(project_id, cookie)
     url = "https://www.apimation.com/projects/active/#{project_id}"
     response = @api.put(url, payload: "", cookies: cookie)
-    puts response
     return response
   end
 

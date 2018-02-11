@@ -54,7 +54,6 @@ class TestRequestCreation
 
   def add_collection(name)
     response = @endpoints.collection_endpoint.add_collection(name, @user.cookie)
-    puts response
     response_hash = JSON.parse(response)
   end
 

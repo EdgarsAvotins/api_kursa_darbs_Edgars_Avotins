@@ -69,7 +69,6 @@ module Request
   def self.change_active_project_payload(collection_id, project_id, cookie)
     user = Users.default_user
     cookie = cookie['dancer.session']
-    p cookie
     payload = {
       "name":"Change project request",
       "description":"Request for changing project",

@@ -5,9 +5,14 @@ class Afterhook
   end
 
   def delete_created_data
-    # TODO: iterate through projects
-    delete_collections
-    delete_environments
+    response = @endpoints.project_endpoint.get_projects(@user.cookie)
+    response_hash = JSON.parse(response)
+    response_hash.each do |project|
+      id = project['id']
+      @endpoints.project_endpoint.change_active_project(id, @user.cookie)
+      delete_collections
+      delete_environments
+    end
   end
 
   def delete_collections
