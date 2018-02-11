@@ -20,9 +20,7 @@ class TestRequestCreation
 
   def validate_login_response(login_response)
     code = login_response.code
-    assert_equal(code, 200, login_response) # TODO: change to raise
     response_hash = JSON.parse(login_response)
-    assert_equal(response_hash['email'], @user.email, response_hash) # TODO: change to raise
   end
 
   def add_environment(env_name)
@@ -58,17 +56,34 @@ class TestRequestCreation
   end
 
   def add_request(collection_name)
+    @request_error ||= ''
     if collection_name == 'Login'
       id = get_collection_id(collection_name)
       payload = Request.login_payload(id)
       response = @endpoints.collection_endpoint.add_request_to_collection(id, @user.cookie, payload: payload)
+      code = response.code
+      unless code == 200
+        error_message = "Request: Login. Bad response code: #{code}\n#{response}"
+        @request_error = @request_error + error_message + "\n\n"
+      end
     elsif collection_name == 'Projects'
       collection_id = get_collection_id(collection_name)
       project_id = get_project_id(@other_project_name)
       payload = Request.change_active_project_payload(collection_id, project_id, @user.cookie)
       response = @endpoints.collection_endpoint.add_request_to_collection(id, @user.cookie, payload: payload)
+      code = response.code
+      unless code == 200
+        error_message = "Request: Projects. Bad response code: #{code}\n#{response}"
+        @request_error = @request_error + error_message + "\n\n"
+      end
     else
       raise "Invalid collection name: #{collection_name}"
+    end
+  end
+
+  def validate_added_requests
+    unless @request_error == ''
+      raise @request_error
     end
   end
 

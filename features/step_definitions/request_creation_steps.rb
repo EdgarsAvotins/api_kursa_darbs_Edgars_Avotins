@@ -22,5 +22,5 @@ When(/^I add two requests$/) do
 end
 
 Then(/^two requests have been added$/) do
-
+  @tests.test_request_creation.validate_added_requests
 end
