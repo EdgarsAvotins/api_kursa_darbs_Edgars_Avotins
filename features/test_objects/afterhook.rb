@@ -5,6 +5,7 @@ class Afterhook
   end
 
   def delete_created_data
+    # TODO: iterate through projects
     delete_collections
     delete_environments
   end

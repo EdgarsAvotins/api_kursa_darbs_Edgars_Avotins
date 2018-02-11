@@ -11,5 +11,6 @@ Before do
 end
 
 After do
+  @tests.test_request_creation.change_to_default_project
   @tests.afterhook.delete_created_data
 end
