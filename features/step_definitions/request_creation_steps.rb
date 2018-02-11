@@ -2,8 +2,8 @@ Given(/^I log in with an existing user$/) do
   @tests.test_request_creation.login_with_default_user
 end
 
-And(/^I add 'PREPROD' environment$/) do
-
+And(/^I add '(.*)' environment$/) do |env_name|
+  @tests.test_request_creation.add_environment(env_name)
 end
 
 And(/^I add global variables$/) do
