@@ -17,4 +17,9 @@ class Endpoints
     @collection_endpoint ||= CollectionEndpoint.new(@api)
     @collection_endpoint
   end
+
+  def project_endpoint
+    @project_endpoint ||= ProjectEndpoint.new(@api)
+    @project_endpoint
+  end
 end

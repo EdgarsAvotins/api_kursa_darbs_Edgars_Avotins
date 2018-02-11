@@ -1,7 +1,6 @@
 class EnvironmentEndpoint
   def initialize(api)
     @api = api
-    @header = {"Content-Type" => 'application/json'}
   end
 
   def get_environments(cookie)
@@ -33,5 +32,25 @@ class EnvironmentEndpoint
     url = "https://www.apimation.com/environments/#{environment_id}"
     response = @api.del(url, cookies: cookie)
     return response
+  end
+
+  def add_global_var(environment_id, key, value, cookie)
+    new_var = [{'key': key, 'value': value}]
+    global_vars = get_global_vars(environment_id, cookie)
+    global_vars.each do |var|
+      new_var.push({'key': var['key'], 'value': var['value']})
+    end
+    global_var_array = new_var
+    payload = {'global_vars': global_var_array}.to_json
+    url = "https://www.apimation.com/environments/#{environment_id}"
+    response = @api.put(url, payload: payload, cookies: cookie)
+  end
+
+  def get_global_vars(environment_id, cookie)
+    url = "https://www.apimation.com/environments/#{environment_id}"
+    response = @api.get(url, cookies: cookie)
+    response_hash = JSON.parse(response)
+    global_vars = response_hash['global_vars']
+    return global_vars
   end
 end
