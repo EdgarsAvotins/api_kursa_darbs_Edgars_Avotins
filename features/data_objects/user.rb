@@ -8,5 +8,8 @@ class User
 
   def set_cookie(cookie)
     @cookie = cookie
+    # p @cookie
+    # p @cookie["dancer.session"]
+    # @cookie
   end
 end

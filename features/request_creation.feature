@@ -2,6 +2,7 @@ Feature: Requests
   Creating requests
   for an existing project
 
+@requests
 Scenario: Creating two requests
   Given I log in with an existing user
   And I add 'PREPROD' environment

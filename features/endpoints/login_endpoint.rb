@@ -7,8 +7,7 @@ class LoginEndpoint
     payload = {login: email, password: password }.to_json
     url = "https://www.apimation.com/login"
     headers = {"Content-Type" => 'application/json'}
-    login_response = @api.post(url, headers: headers, payload: @login_payload)
-    @user.set_cookie(login_response.cookies)
+    login_response = @api.post(url, headers: headers, payload: payload)
     return login_response
   end
 end

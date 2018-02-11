@@ -3,11 +3,6 @@ class TestObjects
     @endpoints = endpoints
   end
 
-  def test_login
-    @test_login ||= TestLogin.new(@endpoints)
-    @test_login
-  end
-
   def test_request_creation
     @test_request_creation ||= TestRequestCreation.new(@endpoints)
     @test_request_creation

@@ -1,5 +1,5 @@
 Given(/^I log in with an existing user$/) do
-
+  @tests.test_request_creation.login_with_default_user
 end
 
 And(/^I add 'PREPROD' environment$/) do
