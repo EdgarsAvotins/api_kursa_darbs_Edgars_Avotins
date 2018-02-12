@@ -51,3 +51,7 @@ build-iPhoneSimulator/
 
 # Versions will be either specified in Gemfile or latest version should be taken
 Gemfile.lock
+
+# Ignore reports
+*.json
+*.html

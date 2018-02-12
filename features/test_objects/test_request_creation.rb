@@ -69,7 +69,7 @@ class TestRequestCreation
     elsif collection_name == 'Projects'
       collection_id = get_collection_id(collection_name)
       project_id = get_project_id(@other_project_name)
-      payload = Request.change_active_project_payload(collection_id, project_id, @user.cookie)
+      payload = Request.change_active_project_payload(collection_id, @user.cookie, project_id: project_id)
       response = @endpoints.collection_endpoint.add_request_to_collection(id, @user.cookie, payload: payload)
       code = response.code
       unless code == 200

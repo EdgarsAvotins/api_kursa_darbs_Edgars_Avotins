@@ -1,6 +1,6 @@
 Feature: Requests
-  Creating requests
-  for an existing project
+  Defined REST API
+  requests
 
 @requests
 Scenario: Creating two requests
