@@ -11,12 +11,14 @@ passed_tests = ReporterHelper.get_passed_count
 failed_tests = ReporterHelper.get_failed_count
 total_tests = ReporterHelper.get_total_count
 
-job_url = "http://jenkinsautomation.tdlbox.com/job/Kursa_darbs_Edgars_Avotins/job/Kursa_darba_Jenkins_Job_Edgars_Avotins/" + build_number.to_s + "/cucumber-html-reports/overview-features.html"
+job_url = "http://jenkinsautomation.tdlbox.com/job/Kursa_darbs_Edgars_Avotins/job/Kursa_darba_Jenkins_Job_Edgars_Avotins/" + build_number.to_s
+report_url = job_url + "/cucumber-html-reports/overview-features.html"
 thumbnail = { 'url' => 'https://static3.fjcdn.com/comments/Blank+_1d84b9477b83b3ef2f5cc2e5d6829d9a.png' }
 
 fields = []
 fields.push({'name' => 'Build number', 'value' => "#{build_number}"})
-fields.push({'name' => 'Build number', 'value' => "#{job_url}"})
+fields.push({'name' => 'Build url', 'value' => "#{job_url}"})
+fields.push({'name' => 'Report url', 'value' => "#{report_url}"})
 fields.push({'name' => 'Passed scenario count', 'value' => passed_tests.to_s})
 fields.push({'name' => 'Failed scenario count', 'value' => failed_tests.to_s})
 fields.push({'name' => 'Total scenario count', 'value' => total_tests.to_s})
