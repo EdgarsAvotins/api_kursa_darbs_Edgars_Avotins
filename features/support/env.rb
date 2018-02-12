@@ -1,6 +1,3 @@
-require 'test/unit'
-include Test::Unit::Assertions
-
 Before do
   p 'Clearing user data'
   Users.clear_data
