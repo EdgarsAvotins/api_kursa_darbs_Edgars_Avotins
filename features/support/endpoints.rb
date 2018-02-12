@@ -22,4 +22,9 @@ class Endpoints
     @project_endpoint ||= ProjectEndpoint.new(@api)
     @project_endpoint
   end
+
+  def case_endpoint
+    @case_endpoint ||= CaseEndpoint.new(@api)
+    @case_endpoint
+  end
 end

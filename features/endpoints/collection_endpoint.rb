@@ -23,7 +23,7 @@ class CollectionEndpoint
   end
 
   def add_request_to_collection(collection_id, cookie, payload: nil)
-    Request.default_request_payload(collection_id) if payload.nil?
+    payload = Request.default_request_payload(collection_id) if payload.nil?
     url = "https://www.apimation.com/steps"
     response = @api.post(url, payload: payload, cookies: cookie)
     return response

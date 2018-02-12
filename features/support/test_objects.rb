@@ -8,6 +8,11 @@ class TestObjects
     @test_request_creation
   end
 
+  def test_case_creation
+    @test_case_creation ||= TestCaseCreation.new(@endpoints)
+    @test_case_creation
+  end
+
   def afterhook
     @afterhook ||= Afterhook.new(@endpoints)
     @afterhook

@@ -12,6 +12,7 @@ class Afterhook
       @endpoints.project_endpoint.change_active_project(id, @user.cookie)
       delete_collections
       delete_environments
+      delete_cases
     end
   end
 
@@ -37,5 +38,17 @@ class Afterhook
     response = @endpoints.environment_endpoint.get_environments(@user.cookie)
     response_hash = JSON.parse(response)
     raise "Did not delete these environments: #{response_hash}" unless response_hash == []
+  end
+
+  def delete_cases
+    response = @endpoints.case_endpoint.get_cases(@user.cookie)
+    response_hash = JSON.parse(response)
+    response_hash.each do |test_case|
+      response = @endpoints.case_endpoint.delete_case(test_case['case_id'], @user.cookie)
+      raise response unless response == ''
+    end
+    response = @endpoints.case_endpoint.get_cases(@user.cookie)
+    response_hash = JSON.parse(response)
+    raise "Did not delete these cases: #{response_hash}" unless response_hash == []
   end
 end

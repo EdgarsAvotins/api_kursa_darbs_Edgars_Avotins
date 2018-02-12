@@ -66,8 +66,8 @@ module Request
     payload
   end
 
-  def self.change_active_project_payload(collection_id, project_id, cookie)
-    user = Users.default_user
+  def self.change_active_project_payload(collection_id, cookie, project_id: nil)
+    @project_id ||= project_id
     cookie = cookie['dancer.session']
     payload = {
       "name":"Change project request",
@@ -101,5 +101,9 @@ module Request
       "paste":false,
       "collection_id":"#{collection_id}"}.to_json
     payload
+  end
+
+  def self.get_used_project_id
+    @project_id
   end
 end
